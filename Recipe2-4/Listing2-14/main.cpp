@@ -2,15 +2,16 @@
 
 using namespace std;
 
-auto AutoFunctionFromReturn(int parameter)
+template <typename T>
+auto AutoFunctionFromParameter(T parameter)
 {
     return parameter;
 }
 
 int main()
 {
-    auto value = AutoFunctionFromReturn(1);
+    auto value = AutoFunctionFromParameter(2);
     cout << value << endl;
-
+    
     return 0;
 }
