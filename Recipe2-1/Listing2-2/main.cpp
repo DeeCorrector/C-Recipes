@@ -11,6 +11,6 @@ public:
 int main()
 {
     MyClass objectA;
-    MyClass objectB(MyClass());
+    MyClass objectB{MyClass{}};
     return 0;
 }
