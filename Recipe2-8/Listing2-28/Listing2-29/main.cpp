@@ -21,6 +21,10 @@ public:
 	m_Member = nullptr;
     }
 
+    MyClass(const MyClass& rhs)
+    {
+    }
+
     int GetValue() const
     {
         return *m_Member;
