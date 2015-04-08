@@ -25,42 +25,48 @@ namespace Localization
 	rapidxml::xml_node<>* workbook{ document.first_node("Workbook") };
 	if (workbook != nullptr)
 	{
-	    rapidxml::xml_node<>* table{ workbook->first_node("Table") };
-	    if (table != nullptr)
-	    {
-		rapidxml::xml_node<>* row{ table->first_node("Row") };
-		while (row != nullptr)
-		{
-	            uint32_t stringId{ UINT32_MAX };
-
-		    rapidxml::xml_node<>* cell{ row->first_node("Cell") };
-		    if (cell != nullptr)
+            rapidxml::xml_node<>* worksheet{ workbook->first_node("Worksheet") };
+            if (worksheet != nullptr)
+            {
+	        rapidxml::xml_node<>* table{ worksheet->first_node("Table") };
+	        if (table != nullptr)
+	        {
+		    rapidxml::xml_node<>* row{ table->first_node("Row") };
+		    while (row != nullptr)
 		    {
-		        rapidxml::xml_node<>* data{ cell->first_node("Data") };
-			if (data != nullptr)
-			{
-			    stringId = static_cast<uint32_t>(atoi(data->value()));
-			}
-		    }
+	                uint32_t stringId{ UINT32_MAX };
 
-		    if (stringId != UINT32_MAX)
-		    {
-			uint32_t languageIndex{ 0 };
-
-			cell = cell->next_sibling("Cell");
-			while (cell != nullptr)
-			{
-			    rapidxml::xml_node<>* data = cell->first_node("Data");
+ 		        rapidxml::xml_node<>* cell{ row->first_node("Cell") };
+		        if (cell != nullptr)
+		        {
+		            rapidxml::xml_node<>* data{ cell->first_node("Data") };
 			    if (data != nullptr)
 			    {
-				m_StringPacks[languageIndex++][stringId] = data->value();
+			        stringId = static_cast<uint32_t>(atoi(data->value()));
 			    }
-			}
-		    }
+		        }
 
-		    row = row->next_sibling("Row");
-		}
-	    }
+		        if (stringId != UINT32_MAX)
+		        {
+			    uint32_t languageIndex{ 0 };
+
+			    cell = cell->next_sibling("Cell");
+			    while (cell != nullptr)
+			    {
+			        rapidxml::xml_node<>* data = cell->first_node("Data");
+			        if (data != nullptr)
+			        {
+				    m_StringPacks[languageIndex++][stringId] = data->value();
+			        }
+
+                                cell = cell->next_sibling("Cell");
+			    }
+		        }
+
+		        row = row->next_sibling("Row");
+		    }
+	        }
+            }
 	}
 
 	SetLanguage(Languages::EN_US);
