@@ -43,6 +43,8 @@ namespace Localization
 		}
 	    }
 	}
+
+	SetLanguage(Languages::EN_US);
     }
 
     void Manager::SetLanguage(Languages language)
