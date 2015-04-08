@@ -32,3 +32,4 @@ main
 *.stackdump
 makefile~
 .makefile.swp
+*.h~
