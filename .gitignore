@@ -29,3 +29,6 @@
 main
 *.cpp~
 *.un~
+*.stackdump
+Recipe3-1/Listing3-1/makefile~
+Recipe3-1/Listing3-2/makefile~
