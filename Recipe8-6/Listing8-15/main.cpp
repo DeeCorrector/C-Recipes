@@ -19,5 +19,7 @@ int main(int argc, char* argv[])
         cout << element << ", ";
     }
 
+    cout << endl;
+
     return 0;
 }

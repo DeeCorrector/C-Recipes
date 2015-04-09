@@ -6,7 +6,7 @@ using namespace std;
 class Vehicle
 {
 private:
-    uint32_t m_NumberOfWheels{};
+    uint32_t m_NumberOfWheels;
 
 public:
     uint32_t GetNumberOfWheels()

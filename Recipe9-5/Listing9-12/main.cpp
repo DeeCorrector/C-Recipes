@@ -34,7 +34,7 @@ constexpr unsigned int sdbmHash{ SDBMCalculator<16>::CalculateValue("Bruce Suthe
 
 int main(int argc, char* argv[])
 {
-    cout << "The hash of Bruce Sutherland is " << sdbmHash;
+    cout << "The hash of Bruce Sutherland is " << sdbmHash << endl;
 
     return 0;
 }
