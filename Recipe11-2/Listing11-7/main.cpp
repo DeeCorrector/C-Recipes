@@ -66,7 +66,7 @@ public:
         const intptr_t index{
             (static_cast<MyManagedObject*>(pMem)-s_ManagedObjects.data()) /
             static_cast<intptr_t>(sizeof(MyManagedObject)) };
-        if (0 <= index && index < static_cast<int>(s_ManagedObjects.size()))
+        if (0 <= index && index < static_cast<intptr_t>(s_ManagedObjects.size()))
         {
             s_FreeList.emplace(static_cast<unsigned int>(index));
         }

@@ -74,10 +74,10 @@ public:
     {
         lock_guard<mutex> lock{ s_Mutex };
 
-        const int index{
+        const intptr_t index{
             (static_cast<MyManagedObject*>(pMem)-s_ManagedObjects.data()) /
             static_cast<intptr_t>(sizeof(MyManagedObject)) };
-        if (0 <= index && index < static_cast<int>(s_ManagedObjects.size()))
+        if (0 <= index && index < static_cast<intptr_t>(s_ManagedObjects.size()))
         {
             s_FreeList.emplace(static_cast<unsigned int>(index));
         }
@@ -146,23 +146,31 @@ int main(int argc, char* argv[])
 
     condition.notify_all();
 
-    this_thread::sleep_for(chrono::milliseconds{ 10 });
+    this_thread::sleep_for( 10ms );
     while (!queueMutex.try_lock())
     {
         cout << "Main waiting for queue access!" << endl;
-        this_thread::sleep_for(chrono::milliseconds{ 100 });
+        this_thread::sleep_for( 100ms );
     }
 
     queue.emplace_back(100000);
     queue.emplace_back(200000);
+    
+    this_thread::sleep_for( 1000ms );
+    
     condition.notify_one();
 
-    this_thread::sleep_for(chrono::milliseconds{ 10 });
+    this_thread::sleep_for( 1000ms );
+
     condition.notify_one();
 
+    this_thread::sleep_for( 1000ms );
+    
     queueMutex.unlock();
 
     die = true;
+
+    cout << "main waiting for join!" << endl;
 
     myThread1.join();
     myThread2.join();
