@@ -1,5 +1,7 @@
-﻿#include <future>
+﻿#include <cassert>
+#include <future>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
