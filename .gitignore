@@ -33,3 +33,4 @@ main
 makefile~
 .makefile.swp
 *.h~
+*.opensdf
